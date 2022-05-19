@@ -30,12 +30,12 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
-    public Livro update(@PathVariable Integer livroId, @RequestBody Livro livro) {
-        return livroService.update(livro, livroId);
+    public Livro update(@PathVariable Integer id, @RequestBody Livro livro) {
+        return livroService.update(livro, id);
     }
     
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer livroId){
-        livroService.delete(livroId);
+    public void delete(@PathVariable Integer id){
+        livroService.delete(id);
     }
 }
