@@ -8,7 +8,8 @@ public class AtividadeDTO {
 
     private Integer idAtividade;
 	private String nomeAtividade;
-	private List<Turma> turmaList;
+	private List<TurmaDTO> turmaList;
+	
 	@Override
 	public String toString() {
 		return "AtividadeDTO [idAtividade=" + idAtividade + ", nomeAtividade=" + nomeAtividade + ", turmaList="
@@ -26,10 +27,10 @@ public class AtividadeDTO {
 	public void setNomeAtividade(String nomeAtividade) {
 		this.nomeAtividade = nomeAtividade;
 	}
-	public List<Turma> getTurmaList() {
+	public List<TurmaDTO> getTurmaList() {
 		return turmaList;
 	}
-	public void setTurmaList(List<Turma> turmaList) {
+	public void setTurmaList(List<TurmaDTO> turmaList) {
 		this.turmaList = turmaList;
 	}
 	
