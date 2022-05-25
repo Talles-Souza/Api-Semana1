@@ -19,7 +19,7 @@ public class InstrutorService {
 	InstrutorRepository instrutorRepository;
 
 	public List<Instrutor> findAllInstrutor() {
-		return instrutorRepository.findAll();
+	 return instrutorRepository.findAll().isEmpty() ? null : instrutorRepository.findAll();
 	}
 
 	public Instrutor findInstrutorById(Integer id) {
@@ -33,9 +33,9 @@ public class InstrutorService {
 		if (null != instrutor) {
 
 			instrutorDTO = convertendoEntidadeParaDTO(instrutor);
-
+			return instrutorDTO;
 		}
-		return instrutorDTO;
+		return null;
 	}
 
 	public Instrutor saveInstrutor(Instrutor instrutor) {
@@ -43,10 +43,9 @@ public class InstrutorService {
 	}
 
 	public InstrutorDTO saveInstrutorDTO(InstrutorDTO instrutorDto) {
-		
-		Instrutor instrutor = new Instrutor();
-        instrutor = convertendoDTOparaEntidade(instrutorDto);
-        Instrutor instrutorNovo =  instrutorRepository.save(instrutor);
+        Instrutor instrutor = new Instrutor();
+		instrutor = convertendoDTOparaEntidade(instrutorDto);
+		Instrutor instrutorNovo = instrutorRepository.save(instrutor);
 
 		return convertendoEntidadeParaDTO(instrutorNovo);
 	}
@@ -56,14 +55,14 @@ public class InstrutorService {
 	}
 
 	public void deleteInstrutor(Integer id) {
-		Instrutor intrutor = instrutorRepository.findById(id).get();
-		instrutorRepository.delete(intrutor);
+		Instrutor instrutor = instrutorRepository.findById(id).get();
+		instrutorRepository.delete(instrutor);
 	}
 
-	public void deleteInstrutor(Instrutor Instrutor) {
+	/*public void deleteInstrutor(Instrutor Instrutor) {
 		instrutorRepository.delete(Instrutor);
 
-	}
+	}*/
 
 	private InstrutorDTO convertendoEntidadeParaDTO(Instrutor instrutor) {
 		InstrutorDTO instrutorDTO = new InstrutorDTO();
@@ -72,9 +71,9 @@ public class InstrutorService {
 		instrutorDTO.setNomeInstrutor(instrutor.getNomeInstrutor());
 		instrutorDTO.setRg(instrutor.getRg());
 		instrutorDTO.setTitulacaoInstrutor(instrutor.getTitulacaoInstrutor());
-        
+
 		List<TurmaDTO> listTurmaDTO = new ArrayList<>();
-		if(null != instrutor.getTurmaList()) {
+		if (null != instrutor.getTurmaList()) {
 			for (Turma turma : instrutor.getTurmaList()) {
 				TurmaDTO turmaDTO = new TurmaDTO();
 				turmaDTO.setDataFim(turma.getDataFim());
@@ -82,7 +81,7 @@ public class InstrutorService {
 				turmaDTO.setDuracaoTurma(turma.getDuracaoTurma());
 				turmaDTO.setHorarioTurma(turma.getHorarioTurma());
 				turmaDTO.setIdTurma(turma.getIdTurma());
-	
+
 				listTurmaDTO.add(turmaDTO);
 			}
 			instrutorDTO.setTurmaDTOList(listTurmaDTO);
@@ -98,8 +97,7 @@ public class InstrutorService {
 		instrutor.setNomeInstrutor(instrutorDto.getNomeInstrutor());
 		instrutor.setRg(instrutorDto.getRg());
 		instrutor.setTitulacaoInstrutor(instrutorDto.getTitulacaoInstrutor());
-		
-		
+        
 		return instrutor;
 	}
 
