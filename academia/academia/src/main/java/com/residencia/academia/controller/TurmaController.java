@@ -47,7 +47,7 @@ public class TurmaController {
 	}
 	
 	@GetMapping("/dto/{id}")
-	public ResponseEntity<TurmaDTO> findInstrutorDTOById(@PathVariable Integer id) {
+	public ResponseEntity<TurmaDTO> findTurmaDTOById(@PathVariable Integer id) {
 		TurmaDTO turmaDTO = turmaService.findTurmaDTOById(id);
 		if (null == turmaDTO)
 			throw new NoSuchElementFoundException("Não foi encontrada  a Turma com o id " + id);
@@ -55,7 +55,7 @@ public class TurmaController {
 			return new ResponseEntity<>(turmaDTO, HttpStatus.OK);
 	}
 	@PostMapping("/dto")
-	public ResponseEntity<TurmaDTO> saveInstrutorDTO(@RequestBody TurmaDTO turmaDto) {
+	public ResponseEntity<TurmaDTO> saveTurmaDTO(@RequestBody TurmaDTO turmaDto) {
 		TurmaDTO turmaDTO = turmaService.saveTurmaDTO(turmaDto);
 		return new ResponseEntity<>(turmaDTO, HttpStatus.CREATED);
 	}
