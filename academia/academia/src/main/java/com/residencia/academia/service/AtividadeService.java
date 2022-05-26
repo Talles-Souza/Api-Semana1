@@ -15,7 +15,7 @@ public class AtividadeService {
 	private AtividadeRepository atividadeRepository;
 	
 	public List<Atividade> findAllAtividade() {
-		return atividadeRepository.findAll();
+		return atividadeRepository.findAll().isEmpty() ? null : atividadeRepository.findAll();
 	}
 
 	public Atividade findAtividadeById(Integer id) {

@@ -27,7 +27,11 @@ public class AtividadeController {
 	
 	@GetMapping
 	public ResponseEntity<List<Atividade>> findAllAtividade() {
-		return new ResponseEntity<>(atividadeService.findAllAtividade(), HttpStatus.OK);
+		List<Atividade> atividade = atividadeService.findAllAtividade();
+		if (null == atividade)
+			throw new NoSuchElementFoundException("Nenhuma atividade encontrada");
+		else
+		    return new ResponseEntity<>(atividadeService.findAllAtividade(), HttpStatus.OK);
 
 	}
 	@PostMapping
